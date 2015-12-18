@@ -292,7 +292,7 @@ class JustArchives_Plugin implements Typecho_Plugin_Interface
 			foreach( $posts as $post ) {
 				if ( TRUE == $firstpost ) {
 					//$html .= '	<li><span class="car-yearmonth">' . sprintf( '%1$s %2$d', $month . '月', $year );
-					$html .= '	<li><span class="car-yearmonth">' . sprintf( '%1$s %2$s', $year . '年', $month . '月' );
+					$html .= '	<li><span class="car-yearmonth">' . sprintf( '%1$s %2$s', $year . ' 年 ', $month . ' 月' );
 					//if ( '0' != $atts['postcount'] ) $html .= ' <span title="Post Count">(' . count($posts) . ')</span>';
 					$html .= "</span>\n		<ul class='car-monthlisting'>\n";
 					$firstpost = FALSE;
