@@ -153,11 +153,12 @@ class JustArchives_Plugin implements Typecho_Plugin_Interface
 	<script type="text/javascript">
 		/* <![CDATA[ */
 			jQuery(document).ready(function() {
-				jQuery('.car-collapse').find('.car-monthlisting').hide();
+				//jQuery('.car-collapse').find('.car-monthlisting').hide();
 				jQuery('.car-collapse').find('.car-monthlisting:first').show();
 				jQuery('.car-collapse').find('.car-yearmonth').click(function() {
 					jQuery(this).next('ul').slideToggle('fast');
 				});
+				/*
 				jQuery('.car-collapse').find('.car-toggler').click(function() {
 					if ( '展开全部' == jQuery(this).text() ) {
 						jQuery(this).parent('.car-container').find('.car-monthlisting').show();
@@ -169,6 +170,8 @@ class JustArchives_Plugin implements Typecho_Plugin_Interface
 					}
 					return false;
 				});
+				*/
+				jQuery(this).parent('.car-container').find('.car-monthlisting').show();
 			});
 		/* ]]> */
 	</script>
@@ -277,7 +280,7 @@ class JustArchives_Plugin implements Typecho_Plugin_Interface
 		if ( true == $atts['usejs'] ) $html .= ' car-collapse';
 		$html .= '">'. "\n";
 
-		if ( true == $atts['usejs'] ) $html .= '<a href="#" class="car-toggler">展开全部' . "</a>\n\n";
+		//if ( true == $atts['usejs'] ) $html .= '<a href="#" class="car-toggler">展开全部' . "</a>\n\n";
 
 		$html .= '<ul class="car-list">' . "\n";
 
@@ -288,17 +291,21 @@ class JustArchives_Plugin implements Typecho_Plugin_Interface
 			$firstpost = TRUE;
 			foreach( $posts as $post ) {
 				if ( TRUE == $firstpost ) {
-					$html .= '	<li><span class="car-yearmonth">' . sprintf( '%1$s %2$d', $month . '月', $year );
-					if ( '0' != $atts['postcount'] ) $html .= ' <span title="Post Count">(' . count($posts) . ')</span>';
+					//$html .= '	<li><span class="car-yearmonth">' . sprintf( '%1$s %2$d', $month . '月', $year );
+					$html .= '	<li><span class="car-yearmonth">' . sprintf( '%1$s %2$s', $year . '年', $month . '月' );
+					//if ( '0' != $atts['postcount'] ) $html .= ' <span title="Post Count">(' . count($posts) . ')</span>';
 					$html .= "</span>\n		<ul class='car-monthlisting'>\n";
 					$firstpost = FALSE;
 				}
 
-				$html .= '			<li>' .  $post['day'] . ': <a href="' . $post['permalink'] . '">' . $post['title'] . '</a>';
+				//$html .= '			<li>' .  $post['day'] . ': <a href="' . $post['permalink'] . '">' . $post['title'] . '</a>';
+				$html .= '			<li><a href="' . $post['permalink'] . '">' . $post['title'] . '</a>';
 
 				// Unless comments are closed and there are no comments, show the comment count
+				/*
 				if ( '0' != $atts['commentcount'] && ( 0 != $post['commentsNum'] || '0' != $post['allowComment'] ) )
 					$html .= ' <span title="Comment Count">(' . $post['commentsNum'] . ')</span>';
+				*/
 
 				$html .= "</li>\n";
 			}
